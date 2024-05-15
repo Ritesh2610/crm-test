@@ -17,13 +17,13 @@ function AddFile({ open, setOpen, loading }) {
     const changeHandler = (e) => {
         let name = e.target.name
         let value = e.target.value
-        setFormData((prev) => ({...prev, [name]: value}))
+        setFormData((prev) => ({ ...prev, [name]: value }))
     }
 
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log(formData);
-        dispatch(addProduct({formData,toast})).then(()=>{
+        dispatch(addProduct({ formData, toast })).then(() => {
             onCloseModal()
         })
     }
@@ -96,7 +96,7 @@ function AddFile({ open, setOpen, loading }) {
                                         onChange={changeHandler}
                                     />
                                 </div>
-                                <div className="col-md-12 col-12 mb-3">
+                                <div className="col-md-6 col-12 mb-3">
                                     <label className='form-label'>Category</label>
                                     <input
                                         className="form-control"
@@ -106,6 +106,18 @@ function AddFile({ open, setOpen, loading }) {
                                         onChange={changeHandler}
                                     />
                                 </div>
+
+                                <div className="col-md-6 col-12 mb-3">
+                                    <label className='form-label'>Thumbnail</label>
+                                    <input
+                                        className="form-control"
+                                        type="file"
+                                        name='thumbnail'
+                                        required
+                                        onChange={(e) => setFormData(prev => ({ ...prev, thumbnail: e.target.value }))}
+                                    />
+                                </div>
+
                                 <div className="col-md-12 col-12 mb-3">
                                     <label className='form-label'>Description</label>
                                     <textarea

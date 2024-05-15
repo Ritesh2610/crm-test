@@ -2,10 +2,11 @@ import React, { useEffect } from 'react'
 import ProductChart from './ProductChart'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllProduct } from '../../redux/featurs/productSlice'
+import Loading from '../../assets/loader/Loading'
 
 
 function Dashboard() {
-  const { data } = useSelector((state) => state.product)
+  const { data, loading } = useSelector((state) => state.product)
 
   const dispatch = useDispatch()
 
@@ -17,7 +18,10 @@ function Dashboard() {
     <div className='m-3'>
       {/* <h3>Dashboard</h3> */}
       <div>
-        {data && <ProductChart products={data} />}
+        {loading? 
+        <Loading/>
+        : 
+        data&&<ProductChart products={data} />}
       </div>
     </div>
   )

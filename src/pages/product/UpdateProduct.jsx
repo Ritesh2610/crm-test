@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Modal from 'react-responsive-modal'
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -13,7 +13,21 @@ function UpdateProduct({ open, setOpen, loading ,data}) {
 
     const dispatch = useDispatch()
 
-    const [formData, setFormData] = useState(data)
+    const [formData, setFormData] = useState({
+        title:"",
+        price:"",
+        discountPercentage:"",
+        rating:"",
+        stock:"",
+        brand:"",
+        category:"",
+        thumbnail:"",
+        description:""
+    })
+
+    useEffect(()=>{
+            if(data)setFormData(data)
+    },[data])
 
     const changeHandler = (e) => {
         let name = e.target.name
@@ -49,7 +63,6 @@ function UpdateProduct({ open, setOpen, loading ,data}) {
                                         type="text"
                                         name='title'
                                         value={formData.title}
-                                        required
                                         onChange={changeHandler}
                                     />
                                 </div>
@@ -60,7 +73,6 @@ function UpdateProduct({ open, setOpen, loading ,data}) {
                                         type="text"
                                         name='price'
                                         value={formData.price}
-                                        required
                                         onChange={changeHandler}
                                     />
                                 </div>
@@ -71,7 +83,6 @@ function UpdateProduct({ open, setOpen, loading ,data}) {
                                         type="text"
                                         name='discountPercentage'
                                         value={formData.discountPercentage}
-                                        required
                                         onChange={changeHandler}
                                     />
                                 </div>
@@ -82,7 +93,6 @@ function UpdateProduct({ open, setOpen, loading ,data}) {
                                         type="text"
                                         name='rating'
                                         value={formData.rating}
-                                        required
                                         onChange={changeHandler}
                                     />
                                 </div>
@@ -93,7 +103,6 @@ function UpdateProduct({ open, setOpen, loading ,data}) {
                                         type="text"
                                         name='stock'
                                         value={formData.stock}
-                                        required
                                         onChange={changeHandler}
                                     />
                                 </div>
@@ -104,21 +113,30 @@ function UpdateProduct({ open, setOpen, loading ,data}) {
                                         type="text"
                                         name='brand'
                                         value={formData.brand}
-                                        required
                                         onChange={changeHandler}
                                     />
                                 </div>
-                                <div className="col-md-12 col-12 mb-3">
+                                <div className="col-md-6 col-12 mb-3">
                                     <label className='form-label'>Category</label>
                                     <input
                                         className="form-control"
                                         type="text"
                                         name='category'
                                         value={formData.category}
-                                        required
                                         onChange={changeHandler}
                                     />
                                 </div>
+                                <div className="col-md-6 col-12 mb-3">
+                                    <label className='form-label'>Thumbnail</label>
+                                    <input
+                                        className="form-control"
+                                        type="file"
+                                        name='thumbnail'
+                                        filename={formData.thumbnail}
+                                        onChange={(e) => setFormData(prev => ({ ...prev, thumbnail: e.target.value }))}
+                                    />
+                                </div>
+
                                 <div className="col-md-12 col-12 mb-3">
                                     <label className='form-label'>Description</label>
                                     <textarea
@@ -126,7 +144,6 @@ function UpdateProduct({ open, setOpen, loading ,data}) {
                                         rows={5}
                                         name='description'
                                         value={formData.description}
-                                        required
                                         onChange={changeHandler}
                                     />
                                 </div>

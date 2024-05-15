@@ -103,12 +103,12 @@ function Product() {
                 </div>
             </div>
 
-            {singleProduct&&<UpdateProduct
+            <UpdateProduct
                 open={updateOpen}
                 setOpen={setUpdateOpen}
                 loading={loading}
                 data={singleProduct}
-            />}
+            />
         </>
     )
 }
