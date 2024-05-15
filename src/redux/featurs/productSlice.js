@@ -43,12 +43,10 @@ const updateProduct = createAsyncThunk("/product/update", async ({ formData, toa
 
     try {
         const res = await api.updateProduct(formData);
-        console.log(res, "res////////////////////////////////");
         toast.success("Product deleted successfully")
         return { res: res.data, productId: formData.id }
 
     } catch (error) {
-        console.log(error, "error////////////////////////////////");
         toast.error(error.response.data.message)
         throw error.response.data;
     }

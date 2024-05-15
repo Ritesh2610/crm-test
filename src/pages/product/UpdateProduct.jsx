@@ -3,13 +3,11 @@ import Modal from 'react-responsive-modal'
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { updateProduct } from '../../redux/featurs/productSlice';
-import { FaRegEdit } from 'react-icons/fa';
 
 
 function UpdateProduct({ open, setOpen, loading ,data}) {
 
     const onCloseModal = () => setOpen(false);
-    const onOpenModal = () => setOpen(true);
 
     const dispatch = useDispatch()
 
@@ -44,12 +42,6 @@ function UpdateProduct({ open, setOpen, loading ,data}) {
     }
     return (
         <div className='' >
-            <FaRegEdit
-                title='Update'
-                className='fs-4 mx-1'
-                style={{ color: "#9f59ff", cursor: "pointer" }}
-                onClick={onOpenModal}
-            />
             <Modal open={open} onClose={onCloseModal} center>
                 <div >
                     <h3 className='text-center mb-3'>Upadte Product</h3>
